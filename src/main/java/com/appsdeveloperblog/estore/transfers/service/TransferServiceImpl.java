@@ -2,6 +2,8 @@ package com.appsdeveloperblog.estore.transfers.service;
 
 import java.net.ConnectException;
 
+import com.ivson.ws.core.events.DepositRequestedEvent;
+import com.ivson.ws.core.events.WithdrawalRequestedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.env.Environment;
@@ -15,8 +17,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.appsdeveloperblog.estore.transfers.error.TransferServiceException;
 import com.appsdeveloperblog.estore.transfers.model.TransferRestModel;
-import com.appsdeveloperblog.payments.ws.core.events.DepositRequestedEvent;
-import com.appsdeveloperblog.payments.ws.core.events.WithdrawalRequestedEvent;
 
 @Service
 public class TransferServiceImpl implements TransferService {
@@ -42,8 +42,7 @@ public class TransferServiceImpl implements TransferService {
 				transferRestModel.getRecepientId(), transferRestModel.getAmount());
 
 		try {
-			kafkaTemplate.send(environment.getProperty("withdraw-money-topic", "withdraw-money-topic"),
-					withdrawalEvent);
+			kafkaTemplate.send(environment.getProperty("withdraw-money-topic", "withdraw-money-topic"),  withdrawalEvent);
 			LOGGER.info("Sent event to withdrawal topic.");
 
 			// Business logic that causes and error

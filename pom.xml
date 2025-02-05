@@ -25,8 +25,9 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
+		<!-- adiciona o projeto core dentro deste -->
 		<dependency>
-			<groupId>com.appsdeveloperblog.payments.ws</groupId>
+			<groupId>com.ivson.ws</groupId>
 			<artifactId>core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
